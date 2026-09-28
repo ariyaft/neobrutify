@@ -33,10 +33,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Prepare demo site
+        run: |
+          cp brutalist.js demo/
+          sed -i 's|\.\./brutalist\.js|brutalist.js|g' demo/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload demo directory
           path: './demo'
       - name: Deploy to GitHub Pages
         id: deployment
