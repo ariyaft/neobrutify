@@ -1,0 +1,44 @@
+{
+  "name": "brutalist-svg",
+  "version": "1.0.0",
+  "description": "Algorithmically generated neo-brutalist placeholder images. Thick borders, hard shadows, flat vivid colors, bold geometric compositions. SVG output with PNG export.",
+  "main": "brutalist.js",
+  "browser": "brutalist.js",
+  "types": "brutalist.d.ts",
+  "files": [
+    "brutalist.js",
+    "brutalist.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "demo": "npx -y serve demo",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "neo-brutalism",
+    "brutalist",
+    "placeholder",
+    "image-generator",
+    "svg",
+    "generative-art",
+    "procedural",
+    "design",
+    "neubrutalism",
+    "pattern",
+    "geometric"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}

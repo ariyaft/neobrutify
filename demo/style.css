@@ -1,0 +1,882 @@
+/* ═══════════════════════════════════════════════════════════
+   Brutalist.js — Demo Page Styles
+   ─────────────────────────────────────────────────────────
+   IMPORTANT: All styles are scoped under .brutalist-app
+   to prevent leaking into consumer projects.
+   This file is NOT shipped with the npm package.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap');
+
+/* ── Scoped Design Tokens ──────────────────────────────── */
+.brutalist-app {
+  /* Colors — namespaced to avoid collisions */
+  --brutalist-bg:         #FFFDF5;
+  --brutalist-fg:         #1A1A1A;
+  --brutalist-black:      #000000;
+  --brutalist-white:      #FFFFFF;
+  --brutalist-off-white:  #FFFDF5;
+  --brutalist-yellow:     #FFD23F;
+  --brutalist-pink:       #FF6B6B;
+  --brutalist-blue:       #74B9FF;
+  --brutalist-green:      #88D498;
+  --brutalist-orange:     #FFA552;
+  --brutalist-lavender:   #B8A9FA;
+  --brutalist-surface:    #F5F0E6;
+
+  /* Borders & Shadows */
+  --brutalist-border:         3px solid var(--brutalist-black);
+  --brutalist-border-thin:    2px solid var(--brutalist-black);
+  --brutalist-shadow-sm:      3px 3px 0 0 var(--brutalist-black);
+  --brutalist-shadow-md:      5px 5px 0 0 var(--brutalist-black);
+  --brutalist-shadow-lg:      8px 8px 0 0 var(--brutalist-black);
+
+  /* Typography */
+  --brutalist-font-display: 'Syne', sans-serif;
+  --brutalist-font-heading: 'Space Grotesk', sans-serif;
+  --brutalist-font-body:    'Inter', sans-serif;
+  --brutalist-font-mono:    'Space Mono', monospace;
+
+  /* Spacing */
+  --brutalist-space-xs: 0.25rem;
+  --brutalist-space-sm: 0.5rem;
+  --brutalist-space-md: 1rem;
+  --brutalist-space-lg: 1.5rem;
+  --brutalist-space-xl: 2rem;
+  --brutalist-space-2xl: 3rem;
+  --brutalist-space-3xl: 4rem;
+
+  /* Transitions */
+  --brutalist-transition: 120ms ease;
+
+  /* App-level base styles (scoped, not global) */
+  font-family: var(--brutalist-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--brutalist-fg);
+  background: var(--brutalist-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+/* Scoped box-sizing reset */
+.brutalist-app *,
+.brutalist-app *::before,
+.brutalist-app *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.brutalist-app img,
+.brutalist-app svg {
+  display: block;
+  max-width: 100%;
+}
+
+.brutalist-app a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.brutalist-app button,
+.brutalist-app input,
+.brutalist-app select,
+.brutalist-app textarea {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+}
+
+/* ── Navigation ────────────────────────────────────────── */
+.brutalist-app .brutalist-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--brutalist-bg);
+  border-bottom: var(--brutalist-border);
+  padding: var(--brutalist-space-sm) var(--brutalist-space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.brutalist-app .brutalist-nav-logo {
+  font-family: var(--brutalist-font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.brutalist-app .brutalist-nav-logo span {
+  color: var(--brutalist-pink);
+}
+
+.brutalist-app .brutalist-nav-links {
+  display: flex;
+  gap: var(--brutalist-space-sm);
+  list-style: none;
+}
+
+.brutalist-app .brutalist-nav-link {
+  font-family: var(--brutalist-font-heading);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: var(--brutalist-space-xs) var(--brutalist-space-sm);
+  border: var(--brutalist-border-thin);
+  background: var(--brutalist-white);
+  cursor: pointer;
+  transition: all var(--brutalist-transition);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.brutalist-app .brutalist-nav-link:hover,
+.brutalist-app .brutalist-nav-link.active {
+  background: var(--brutalist-yellow);
+  box-shadow: var(--brutalist-shadow-sm);
+  transform: translate(-2px, -2px);
+}
+
+.brutalist-app .brutalist-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--brutalist-space-sm);
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+.brutalist-app .brutalist-hero {
+  margin-top: 60px;
+  background: var(--brutalist-yellow);
+  border-bottom: var(--brutalist-border);
+  padding: var(--brutalist-space-3xl) var(--brutalist-space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.brutalist-app .brutalist-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle, var(--brutalist-black) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.brutalist-app .brutalist-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.brutalist-app .brutalist-hero-title {
+  font-family: var(--brutalist-font-display);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--brutalist-space-lg);
+  text-transform: uppercase;
+}
+
+.brutalist-app .brutalist-hero-title span {
+  display: block;
+}
+
+.brutalist-app .brutalist-hero-subtitle {
+  font-family: var(--brutalist-font-heading);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+  max-width: 600px;
+  margin: 0 auto var(--brutalist-space-xl);
+  line-height: 1.4;
+}
+
+.brutalist-app .brutalist-hero-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--brutalist-space-sm);
+  margin-bottom: var(--brutalist-space-xl);
+}
+
+.brutalist-app .brutalist-badge {
+  display: inline-block;
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: var(--brutalist-space-xs) var(--brutalist-space-sm);
+  border: var(--brutalist-border-thin);
+  box-shadow: var(--brutalist-shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.brutalist-app .brutalist-badge--yellow { background: var(--brutalist-yellow); }
+.brutalist-app .brutalist-badge--pink   { background: var(--brutalist-pink); color: var(--brutalist-white); }
+.brutalist-app .brutalist-badge--blue   { background: var(--brutalist-blue); }
+.brutalist-app .brutalist-badge--green  { background: var(--brutalist-green); }
+.brutalist-app .brutalist-badge--white  { background: var(--brutalist-white); }
+.brutalist-app .brutalist-badge--lavender { background: var(--brutalist-lavender); }
+
+.brutalist-app .brutalist-hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: var(--brutalist-space-md);
+  flex-wrap: wrap;
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.brutalist-app .brutalist-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--brutalist-space-sm);
+  font-family: var(--brutalist-font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: var(--brutalist-space-sm) var(--brutalist-space-lg);
+  border: var(--brutalist-border);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: all var(--brutalist-transition);
+  position: relative;
+  text-decoration: none;
+}
+
+.brutalist-app .brutalist-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--brutalist-shadow-md);
+}
+
+.brutalist-app .brutalist-btn:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.brutalist-app .brutalist-btn--primary {
+  background: var(--brutalist-black);
+  color: var(--brutalist-white);
+}
+
+.brutalist-app .brutalist-btn--secondary {
+  background: var(--brutalist-white);
+  color: var(--brutalist-black);
+}
+
+.brutalist-app .brutalist-btn--pink {
+  background: var(--brutalist-pink);
+  color: var(--brutalist-white);
+}
+
+.brutalist-app .brutalist-btn--blue {
+  background: var(--brutalist-blue);
+  color: var(--brutalist-black);
+}
+
+.brutalist-app .brutalist-btn--green {
+  background: var(--brutalist-green);
+  color: var(--brutalist-black);
+}
+
+.brutalist-app .brutalist-btn--yellow {
+  background: var(--brutalist-yellow);
+  color: var(--brutalist-black);
+}
+
+.brutalist-app .brutalist-btn--small {
+  font-size: 0.8rem;
+  padding: var(--brutalist-space-xs) var(--brutalist-space-md);
+}
+
+/* ── Main Content ──────────────────────────────────────── */
+.brutalist-app .brutalist-main {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: calc(100vh - 60px);
+}
+
+/* ── Controls Panel ────────────────────────────────────── */
+.brutalist-app .brutalist-controls {
+  border-right: var(--brutalist-border);
+  background: var(--brutalist-white);
+  padding: var(--brutalist-space-lg);
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+  position: sticky;
+  top: 60px;
+}
+
+.brutalist-app .brutalist-controls__section {
+  margin-bottom: var(--brutalist-space-xl);
+}
+
+.brutalist-app .brutalist-controls__title {
+  font-family: var(--brutalist-font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--brutalist-space-xs) var(--brutalist-space-sm);
+  background: var(--brutalist-black);
+  color: var(--brutalist-white);
+  margin-bottom: var(--brutalist-space-md);
+}
+
+.brutalist-app .brutalist-control {
+  margin-bottom: var(--brutalist-space-md);
+}
+
+.brutalist-app .brutalist-control__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--brutalist-font-heading);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: var(--brutalist-space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.brutalist-app .brutalist-control__value {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.75rem;
+  color: var(--brutalist-pink);
+  font-weight: 700;
+}
+
+/* ── Input Styles ──────────────────────────────────────── */
+.brutalist-app .brutalist-input {
+  width: 100%;
+  padding: var(--brutalist-space-sm);
+  border: var(--brutalist-border);
+  background: var(--brutalist-off-white);
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.85rem;
+  transition: all var(--brutalist-transition);
+}
+
+.brutalist-app .brutalist-input:focus {
+  outline: none;
+  box-shadow: var(--brutalist-shadow-sm);
+  transform: translate(-2px, -2px);
+  background: var(--brutalist-white);
+}
+
+.brutalist-app .brutalist-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border: var(--brutalist-border);
+  background: var(--brutalist-off-white);
+  cursor: pointer;
+}
+
+.brutalist-app .brutalist-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--brutalist-yellow);
+  border: var(--brutalist-border);
+  cursor: grab;
+  box-shadow: var(--brutalist-shadow-sm);
+}
+
+.brutalist-app .brutalist-range::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+.brutalist-app .brutalist-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--brutalist-yellow);
+  border: var(--brutalist-border);
+  cursor: grab;
+  box-shadow: var(--brutalist-shadow-sm);
+  border-radius: 0;
+}
+
+/* ── Select ────────────────────────────────────────────── */
+.brutalist-app .brutalist-select {
+  width: 100%;
+  padding: var(--brutalist-space-sm);
+  border: var(--brutalist-border);
+  background: var(--brutalist-off-white);
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0h12L6 8z' fill='%23000'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  padding-right: 36px;
+  transition: all var(--brutalist-transition);
+}
+
+.brutalist-app .brutalist-select:focus {
+  outline: none;
+  box-shadow: var(--brutalist-shadow-sm);
+  transform: translate(-2px, -2px);
+}
+
+/* ── Checkbox ──────────────────────────────────────────── */
+.brutalist-app .brutalist-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: var(--brutalist-space-sm);
+  cursor: pointer;
+  font-family: var(--brutalist-font-heading);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.brutalist-app .brutalist-checkbox {
+  width: 22px;
+  height: 22px;
+  border: var(--brutalist-border);
+  background: var(--brutalist-off-white);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.brutalist-app .brutalist-checkbox:checked {
+  background: var(--brutalist-yellow);
+}
+
+.brutalist-app .brutalist-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--brutalist-black);
+}
+
+/* ── Palette Picker ────────────────────────────────────── */
+.brutalist-app .brutalist-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--brutalist-space-sm);
+}
+
+.brutalist-app .brutalist-palette-option {
+  border: var(--brutalist-border);
+  padding: var(--brutalist-space-xs);
+  cursor: pointer;
+  background: var(--brutalist-white);
+  transition: all var(--brutalist-transition);
+}
+
+.brutalist-app .brutalist-palette-option:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--brutalist-shadow-sm);
+}
+
+.brutalist-app .brutalist-palette-option.active {
+  box-shadow: var(--brutalist-shadow-md);
+  transform: translate(-3px, -3px);
+  background: var(--brutalist-yellow);
+}
+
+.brutalist-app .brutalist-palette-swatches {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.brutalist-app .brutalist-palette-swatch {
+  width: 100%;
+  height: 16px;
+  border: 1px solid var(--brutalist-black);
+}
+
+.brutalist-app .brutalist-palette-name {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.65rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ── Preview Area ──────────────────────────────────────── */
+.brutalist-app .brutalist-preview {
+  padding: var(--brutalist-space-xl);
+  background: var(--brutalist-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+}
+
+.brutalist-app .brutalist-toolbar {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--brutalist-space-lg);
+  flex-wrap: wrap;
+  gap: var(--brutalist-space-sm);
+}
+
+.brutalist-app .brutalist-toolbar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--brutalist-space-sm);
+}
+
+.brutalist-app .brutalist-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--brutalist-space-sm);
+}
+
+.brutalist-app .brutalist-seed-display {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.75rem;
+  padding: var(--brutalist-space-xs) var(--brutalist-space-sm);
+  border: var(--brutalist-border-thin);
+  background: var(--brutalist-white);
+}
+
+.brutalist-app .brutalist-preview-container {
+  border: var(--brutalist-border);
+  box-shadow: var(--brutalist-shadow-lg);
+  background: var(--brutalist-white);
+  padding: 4px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.brutalist-app .brutalist-preview-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Size Presets ──────────────────────────────────────── */
+.brutalist-app .brutalist-size-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--brutalist-space-xs);
+}
+
+.brutalist-app .brutalist-size-preset {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.7rem;
+  padding: var(--brutalist-space-xs);
+  border: var(--brutalist-border-thin);
+  background: var(--brutalist-white);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--brutalist-transition);
+  font-weight: 700;
+}
+
+.brutalist-app .brutalist-size-preset:hover {
+  background: var(--brutalist-blue);
+  box-shadow: var(--brutalist-shadow-sm);
+  transform: translate(-2px, -2px);
+}
+
+.brutalist-app .brutalist-size-preset.active {
+  background: var(--brutalist-yellow);
+  box-shadow: var(--brutalist-shadow-sm);
+  transform: translate(-2px, -2px);
+}
+
+/* ── Gallery Section ───────────────────────────────────── */
+.brutalist-app .brutalist-gallery {
+  border-top: var(--brutalist-border);
+  padding: var(--brutalist-space-3xl) var(--brutalist-space-xl);
+  background: var(--brutalist-white);
+}
+
+.brutalist-app .brutalist-gallery__header {
+  text-align: center;
+  margin-bottom: var(--brutalist-space-2xl);
+}
+
+.brutalist-app .brutalist-gallery__title {
+  font-family: var(--brutalist-font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: var(--brutalist-space-sm);
+}
+
+.brutalist-app .brutalist-gallery__subtitle {
+  font-family: var(--brutalist-font-heading);
+  font-size: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.brutalist-app .brutalist-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--brutalist-space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brutalist-app .brutalist-gallery-item {
+  border: var(--brutalist-border);
+  box-shadow: var(--brutalist-shadow-md);
+  background: var(--brutalist-white);
+  overflow: hidden;
+  transition: all var(--brutalist-transition);
+  cursor: pointer;
+}
+
+.brutalist-app .brutalist-gallery-item:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--brutalist-shadow-lg);
+}
+
+.brutalist-app .brutalist-gallery-item svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.brutalist-app .brutalist-gallery-item__info {
+  padding: var(--brutalist-space-sm);
+  border-top: var(--brutalist-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brutalist-app .brutalist-gallery-item__name {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.brutalist-app .brutalist-gallery-item__seed {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.65rem;
+  color: #888;
+}
+
+/* ── Code Section ──────────────────────────────────────── */
+.brutalist-app .brutalist-code-section {
+  border-top: var(--brutalist-border);
+  padding: var(--brutalist-space-3xl) var(--brutalist-space-xl);
+  background: var(--brutalist-off-white);
+}
+
+.brutalist-app .brutalist-code-block {
+  max-width: 700px;
+  margin: 0 auto var(--brutalist-space-xl);
+}
+
+.brutalist-app .brutalist-code-block:last-child {
+  margin-bottom: 0;
+}
+
+.brutalist-app .brutalist-code-block__header {
+  font-family: var(--brutalist-font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: var(--brutalist-space-sm) var(--brutalist-space-md);
+  background: var(--brutalist-black);
+  color: var(--brutalist-white);
+  border: var(--brutalist-border);
+  border-bottom: none;
+}
+
+.brutalist-app .brutalist-code-block__body {
+  border: var(--brutalist-border);
+  background: var(--brutalist-white);
+  padding: var(--brutalist-space-lg);
+  box-shadow: var(--brutalist-shadow-md);
+  overflow-x: auto;
+}
+
+.brutalist-app .brutalist-code-block__body pre {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  white-space: pre;
+  margin: 0;
+}
+
+.brutalist-app .brutalist-code-block__body .kw { color: #d73a49; }
+.brutalist-app .brutalist-code-block__body .fn { color: #6f42c1; }
+.brutalist-app .brutalist-code-block__body .str { color: #032f62; }
+.brutalist-app .brutalist-code-block__body .num { color: #005cc5; }
+.brutalist-app .brutalist-code-block__body .cm { color: #6a737d; }
+.brutalist-app .brutalist-code-block__body .pr { color: #e36209; }
+
+/* ── Footer ────────────────────────────────────────────── */
+.brutalist-app .brutalist-footer {
+  border-top: var(--brutalist-border);
+  background: var(--brutalist-black);
+  color: var(--brutalist-white);
+  padding: var(--brutalist-space-2xl) var(--brutalist-space-xl);
+  text-align: center;
+}
+
+.brutalist-app .brutalist-footer__title {
+  font-family: var(--brutalist-font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: var(--brutalist-space-sm);
+  text-transform: uppercase;
+}
+
+.brutalist-app .brutalist-footer__text {
+  font-family: var(--brutalist-font-mono);
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.brutalist-app .brutalist-footer a {
+  color: var(--brutalist-yellow);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ── Marquee ───────────────────────────────────────────── */
+.brutalist-app .brutalist-marquee {
+  overflow: hidden;
+  border-top: var(--brutalist-border);
+  border-bottom: var(--brutalist-border);
+  background: var(--brutalist-pink);
+  padding: var(--brutalist-space-sm) 0;
+  white-space: nowrap;
+}
+
+.brutalist-app .brutalist-marquee__track {
+  display: flex;
+  animation: brutalist-marquee-scroll 25s linear infinite;
+}
+
+.brutalist-app .brutalist-marquee__content {
+  display: flex;
+  align-items: center;
+  gap: var(--brutalist-space-xl);
+  font-family: var(--brutalist-font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  padding-right: var(--brutalist-space-xl);
+}
+
+.brutalist-app .brutalist-marquee__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--brutalist-black);
+  flex-shrink: 0;
+}
+
+@keyframes brutalist-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .brutalist-app .brutalist-main {
+    grid-template-columns: 1fr;
+  }
+
+  .brutalist-app .brutalist-controls {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: var(--brutalist-border);
+  }
+
+  .brutalist-app .brutalist-nav-links {
+    display: none;
+  }
+
+  .brutalist-app .brutalist-hero {
+    padding: var(--brutalist-space-2xl) var(--brutalist-space-md);
+  }
+}
+
+@media (max-width: 600px) {
+  .brutalist-app .brutalist-hero-title {
+    font-size: 2rem;
+  }
+
+  .brutalist-app .brutalist-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brutalist-app .brutalist-toolbar__left,
+  .brutalist-app .brutalist-toolbar__right {
+    justify-content: center;
+  }
+
+  .brutalist-app .brutalist-size-presets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brutalist-app .brutalist-palette-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brutalist-app .brutalist-hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ── Utility (scoped) ──────────────────────────────────── */
+.brutalist-app .brutalist-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.brutalist-app .brutalist-mb-sm  { margin-bottom: var(--brutalist-space-sm); }
+.brutalist-app .brutalist-mb-md  { margin-bottom: var(--brutalist-space-md); }
+.brutalist-app .brutalist-mb-lg  { margin-bottom: var(--brutalist-space-lg); }
+.brutalist-app .brutalist-mb-xl  { margin-bottom: var(--brutalist-space-xl); }
