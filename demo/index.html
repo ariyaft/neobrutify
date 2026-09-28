@@ -392,6 +392,13 @@ brutalist.<span class="fn">toCanvas</span>({ width: <span class="num">800</span>
         var seed = brutalist.getSeed(currentSVG);
         seedDisplay.textContent = 'Seed: ' + (seed || '—');
         sizeDisplay.textContent = opts.width + ' × ' + opts.height;
+
+        if (!seedInput.value && seed) {
+          seedInput.value = seed;
+        }
+        
+        opts.seed = seed;
+        updateURL(opts);
       }
 
       function getOptions() {
@@ -408,6 +415,38 @@ brutalist.<span class="fn">toCanvas</span>({ width: <span class="num">800</span>
           showText: showTextInput.checked,
           textContent: textInput.value || 'BRUT',
         };
+      }
+
+      // ── URL Params ────────────────────────────────────────
+      function updateURL(opts) {
+        var params = new URLSearchParams();
+        if (opts.width !== 800) params.set('w', opts.width);
+        if (opts.height !== 600) params.set('h', opts.height);
+        if (opts.palette !== 'gumroad') params.set('p', opts.palette);
+        if (opts.composition !== 'mondrian') params.set('c', opts.composition);
+        if (opts.borderWidth !== 3) params.set('b', opts.borderWidth);
+        if (opts.shadowOffset !== 6) params.set('s', opts.shadowOffset);
+        if (opts.density !== 2) params.set('d', opts.density);
+        if (opts.seed) params.set('seed', opts.seed);
+        if (opts.showText) params.set('txt', '1');
+        if (opts.textContent !== 'BRUT') params.set('tc', opts.textContent);
+
+        var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
+        window.history.replaceState({}, '', newUrl);
+      }
+
+      function loadFromURL() {
+        var params = new URLSearchParams(window.location.search);
+        if (params.has('w')) { widthInput.value = params.get('w'); widthValue.textContent = params.get('w'); }
+        if (params.has('h')) { heightInput.value = params.get('h'); heightValue.textContent = params.get('h'); }
+        if (params.has('p')) { currentPalette = params.get('p'); }
+        if (params.has('c')) { compInput.value = params.get('c'); }
+        if (params.has('b')) { borderInput.value = params.get('b'); borderValue.textContent = params.get('b'); }
+        if (params.has('s')) { shadowInput.value = params.get('s'); shadowValue.textContent = params.get('s'); }
+        if (params.has('d')) { densityInput.value = params.get('d'); densityValue.textContent = params.get('d'); }
+        if (params.has('seed')) { seedInput.value = params.get('seed'); }
+        if (params.has('txt')) { showTextInput.checked = params.get('txt') === '1'; }
+        if (params.has('tc')) { textInput.value = params.get('tc'); }
       }
 
       // ── Value Displays ────────────────────────────────────
@@ -559,6 +598,7 @@ brutalist.<span class="fn">toCanvas</span>({ width: <span class="num">800</span>
       }
 
       // ── Initialize ────────────────────────────────────────
+      loadFromURL();
       buildPalettePicker();
       generate();
       buildGallery();
